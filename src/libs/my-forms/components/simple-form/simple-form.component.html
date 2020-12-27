@@ -1,0 +1,14 @@
+<!-- <div class="example-container">
+  <mat-form-field appearance="outline" hideRequiredMarker>
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="email" required autocomplete="off">
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
+
+<button mat-raised-button color="primary" (click)="handleClick()">Click</button> -->
+
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Email</mat-label>
+  <input [formControl]="emailControl" type="email" matInput >
+</mat-form-field>

@@ -1,0 +1,7 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input  matInput #username placeholder="Name">
+  </mat-form-field>
+  <button type="button" (click)="handleSubmitClicked(username.value)" mat-raised-button color="primary">Submit</button>
+</form>

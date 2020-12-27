@@ -1,0 +1,12 @@
+<div class="card-container">
+
+  <div [attr.title]="card.title" class="card-title">
+    {{card.title}}
+  </div>
+  <div class="card-body">
+    {{card.body}}
+  </div>
+
+  <button mat-raised-button color="accent" (click)="handleClick()" class="button">Delete</button>
+
+</div>
