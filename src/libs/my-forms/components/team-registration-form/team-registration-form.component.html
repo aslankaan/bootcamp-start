@@ -10,6 +10,15 @@
       <input formControlName="name" type="text" matInput placeholder="">
     </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>Sex</mat-label>
+      <mat-select formControlName="sex">
+        <mat-option *ngFor="let sexOption of sexSelectOptions" [value]="sexOption">
+          {{sexOption}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <div class="team-members" formArrayName="teamMembers">
       <ng-container *ngFor="let member of teamMembersControl.controls; let i=index">
         <ng-container [formGroupName]="i">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-registration-form',
@@ -9,9 +10,17 @@ import { Subscription } from 'rxjs';
 })
 export class TeamRegistrationFormComponent implements OnInit {
 
+  sexSelectOptions = [
+    "Male",
+    "Female",
+    "Non-binary",
+    "Not specified"
+  ]
+
   myForm = this.formBuilder.group({
     email: this.formBuilder.control(null, [Validators.required, Validators.email]),
     name: this.formBuilder.control(null, [Validators.required]),
+    sex: this.formBuilder.control(null, [Validators.required]),
     teamMembers: this.formBuilder.array([])
   })
 
@@ -26,7 +35,9 @@ export class TeamRegistrationFormComponent implements OnInit {
   ngAfterViewInit() {
 
     this.subscriptions.add(
-      this.myForm.valueChanges.subscribe((formValue) => {
+      this.myForm.valueChanges.pipe(
+        debounceTime(1000)
+      ).subscribe((formValue) => {
         console.log(formValue);
       })
     )

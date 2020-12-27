@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CssExampleComponent } from './components/css-example/css-example.component';
 import { FormExampleContainerComponent } from './containers/form-example-container/form-example-container.component';
 import { MyFormsModule } from '../my-forms/my-forms.module';
+import { RxjsExampleComponent } from './containers/rxjs-example/rxjs-example.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MyFormsModule } from '../my-forms/my-forms.module';
     MyCardComponent,
     NameFormComponent,
     CssExampleComponent,
-    FormExampleContainerComponent],
+    FormExampleContainerComponent,
+    RxjsExampleComponent],
   imports: [
     CommonModule,
     MyModuleRoutingModule,
