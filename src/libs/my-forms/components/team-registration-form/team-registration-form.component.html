@@ -9,9 +9,9 @@
       <mat-label>Name</mat-label>
       <input formControlName="name" type="text" matInput placeholder="">
     </mat-form-field>
-<!-- 
+
     <div class="team-members" formArrayName="teamMembers">
-      <ng-container *ngFor="let member of teamMembers.controls; let i=index">
+      <ng-container *ngFor="let member of teamMembersControl.controls; let i=index">
         <ng-container [formGroupName]="i">
           <h3>Member</h3>
           <mat-form-field appearance="outline">
@@ -25,10 +25,11 @@
           </mat-form-field>
         </ng-container>
       </ng-container>
-    </div> -->
+    </div>
   </div>
 
-  <!-- <div class="button-area">
+  <div class="button-area">
     <button mat-raised-button color="primary" (click)="handleAddMemberClicked()">Add Member</button>
-  </div> -->
+    <button mat-raised-button color="primary" (click)="handleSubmitClicked()">Submit</button>
+  </div>
 </form>

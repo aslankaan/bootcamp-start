@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-team-registration-form',
@@ -11,38 +12,52 @@ export class TeamRegistrationFormComponent implements OnInit {
   myForm = this.formBuilder.group({
     email: this.formBuilder.control(null, [Validators.required, Validators.email]),
     name: this.formBuilder.control(null, [Validators.required]),
-    // teamMembers: this.formBuilder.array([])
+    teamMembers: this.formBuilder.array([])
   })
+
+  subscriptions: Subscription = new Subscription();
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit() {
-    this.myForm.valueChanges.subscribe((formValue) => {
-      console.log("Form Value", formValue);
-    })
 
-    // this.addTeamMember();
+    this.subscriptions.add(
+      this.myForm.valueChanges.subscribe((formValue) => {
+        console.log(formValue);
+      })
+    )
+
+    this.addTeamMember();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
 
-  // get teamMembers() {
-  //   return this.myForm.get('teamMembers') as FormArray;
-  // }
+  get teamMembersControl() {
+    return this.myForm.get('teamMembers') as FormArray;
+  }
 
-  // addTeamMember() {
-  //   this.teamMembers.push(
-  //     this.formBuilder.group({
-  //       memberEmail: this.formBuilder.control(null),
-  //       memberName: this.formBuilder.control(null),
-  //     })
-  //   )
-  // }
+  addTeamMember() {
+    this.teamMembersControl.push(
+      this.formBuilder.group({
+        memberEmail: this.formBuilder.control(null),
+        memberName: this.formBuilder.control(null),
+      })
+    )
+  }
 
-  // handleAddMemberClicked() {
-  //   this.addTeamMember();
-  // }
+  handleAddMemberClicked() {
+    this.addTeamMember();
+  }
+
+  handleSubmitClicked() {
+    console.log(this.myForm.value);
+  }
 
 }
